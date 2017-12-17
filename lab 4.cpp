@@ -1,6 +1,3 @@
-// laboratorna4.cpp: определяет точку входа для консольного приложения.
-//
-
 #include "stdafx.h"
 #include<iostream>
 #include <conio.h>
@@ -13,14 +10,14 @@ class Vector
 private:
 	double V[n][m];
 public:
-	friend void InputMatrix(Vector A[]);
-	friend void OutputMatrix(Vector A[]);
+	friend void ReadFromConsole(Vector A[]);
+	friend void PrintToConsole(Vector A[]);
 	friend void Sort(Vector A[]);
 	friend double * Products(Vector A[]);
-	friend double Average(Vector A[]);
+	friend double AverageValue(Vector A[]);
 };
 
-void InputMatrix(Vector A[])
+void ReadFromConsole(Vector A[])
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -33,7 +30,7 @@ void InputMatrix(Vector A[])
 }
 
 
-void OutputMatrix(Vector A[])
+void PrintToConsole(Vector A[])
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -82,31 +79,31 @@ double * Products(Vector A[])
 	return products;
 }
 
-double Average(Vector A[])
+double AverageValue(Vector A[])
 {
-	double average = 0;
+	double averagevalue = 0;
 	double sum = 0;
 	for (int i = 0; i < n; i++)
 	{
 		sum += Products(A)[i];
 	}
-	average = sum / n;
-	return average;
+	averagevalue = sum / n;
+	return averagevalue;
 }
 
 void main(void)
 {
 	Vector Bv[n];
-	InputMatrix(Bv);
-	OutputMatrix(Bv);
+	ReadFromConsole(Bv);
+	PrintToConsole(Bv);
 	Sort(Bv);
 	cout << "Sorted matrix" << endl;
-	OutputMatrix(Bv);
+	PrintToConsole(Bv);
 	for (int i = 0; i < n; i++)
 	{
 		cout << "Product in row #" << i + 1 << " under side dia is " << Products(Bv)[i] << endl;
 	}
 
-	cout << "Their average is " << Average(Bv) << endl;
+	cout << "Their averagevalue is " << AverageValue(Bv) << endl;
 	_getch();
 }
